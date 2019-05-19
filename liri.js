@@ -54,16 +54,9 @@ function initialQuery() {
 
 
 function concertThis(query) {
-    console.log(query);
-    
-   
     var queryUrl = "https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp";
-    console.log(queryUrl);
-    
-
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response);
             for (var i=0; i<response.data.length; i ++){
                 console.log("venue: " + response.data[i].venue.name + ", " + response.data[i].venue.country);
                 console.log("date of concert: " + response.data[i].datetime);
@@ -81,8 +74,7 @@ function concertThis(query) {
     })
 }
 function spotifyThisSong(query) {
-    console.log("spotify function running");
-    console.log(query);
+ 
     spotify.search({ type: 'track', query: query }, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
@@ -99,13 +91,10 @@ function spotifyThisSong(query) {
 
 }
 function movieThis(query) {
-    console.log("movie function running");
-    console.log(query);
     var queryUrl = "http://www.omdbapi.com/?apikey=trilogy&t=" + query;
     console.log(queryUrl);
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response.data);
             console.log("title: " + response.data.Title );
             console.log("Release Year: " + response.data.Released );
             console.log("IMDB Rating: " + response.data.Ratings[0].Value );
@@ -123,8 +112,6 @@ function movieThis(query) {
     })
 }
 function doWhatItSays(query) {
-    console.log("dowhatitsays running");
-    console.log(query);
     fs.readFile('./random.txt', 'utf-8', (err, data) => {
         if (err) throw err;
         
